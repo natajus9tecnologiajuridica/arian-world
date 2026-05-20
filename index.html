@@ -10,12 +10,10 @@
     
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' shape-rendering='crispEdges'><rect width='16' height='16' fill='%230a0a2e'/><circle cx='12' cy='4' r='2.5' fill='%23fffde7'/><circle cx='12' cy='4' r='3.5' fill='%23fff9c4' opacity='0.3'/><rect x='2' y='1' width='1' height='1' fill='%23fff'/><rect x='6' y='2' width='1' height='1' fill='%23fff'/><rect x='1' y='6' width='1' height='1' fill='%23fff'/><rect x='5' y='3' width='6' height='3' fill='%234a3a6a'/><rect x='4' y='4' width='8' height='2' fill='%234a3a6a'/><rect x='5' y='6' width='6' height='3' fill='%23f0c89a'/><rect x='6' y='7' width='1' height='1' fill='%231e1b4b'/><rect x='9' y='7' width='1' height='1' fill='%231e1b4b'/><rect x='5' y='9' width='6' height='4' fill='%236366f1'/><rect x='4' y='9' width='1' height='3' fill='%236366f1'/><rect x='11' y='9' width='1' height='3' fill='%236366f1'/><rect x='5' y='13' width='2' height='2' fill='%233730a3'/><rect x='9' y='13' width='2' height='2' fill='%233730a3'/><rect x='5' y='15' width='2' height='1' fill='%231e1b4b'/><rect x='9' y='15' width='2' height='1' fill='%231e1b4b'/></svg>">
     
-    <!-- 📝 SEO e Compartilhamento -->
     <meta name="description" content="Arian World - Controle o Arian, um personagem pixel art, com comandos em português! Site interativo com IA e animações 2D.">
     <meta name="keywords" content="pixel art, ia, javascript, jogo, interativo, animação">
     <meta name="author" content="Natã M. De Oliveira">
     
-    <!-- 📱 Open Graph (preview ao compartilhar em redes sociais) -->
     <meta property="og:title" content="🌙 Arian World">
     <meta property="og:description" content="Comande o Arian, um personagem pixel art, sob a lua cheia!">
     <meta property="og:type" content="website">
@@ -29,22 +27,16 @@
     <canvas id="particleCanvas"></canvas>
 
     <div class="scene">
-        <!-- Lua -->
         <div class="moon"></div>
         <div class="moon-glow"></div>
-
-        <!-- Estrelas -->
         <div class="stars" id="stars"></div>
 
-        <!-- Área principal -->
         <div class="main-container">
-            <!-- Lado esquerdo - Personagem -->
             <div class="character-area">
                 <canvas id="characterCanvas" width="400" height="400"></canvas>
                 <div class="character-status" id="statusText">🌙 Parado sob a lua...</div>
             </div>
 
-            <!-- Lado direito - Chat com IA -->
             <div class="chat-area">
                 <div class="chat-header">
                     <span class="chat-icon">🤖</span>
@@ -69,12 +61,7 @@
                 </div>
 
                 <div class="chat-input-area">
-                    <input
-                        type="text"
-                        id="commandInput"
-                        placeholder="Ex: Quero que ele dance..."
-                        autocomplete="off"
-                    >
+                    <input type="text" id="commandInput" placeholder="Ex: Quero que ele dance..." autocomplete="off">
                     <button id="sendBtn" onclick="sendCommand()">
                         <span>✨</span>
                     </button>
@@ -83,12 +70,37 @@
         </div>
     </div>
 
-    <!-- Chão pixel art -->
     <div class="ground"></div>
+
+    <!-- 🎵 Controles de Áudio -->
+    <div class="audio-controls" id="audioControls">
+        <!-- Botão Música -->
+        <div class="audio-control-group">
+            <button class="audio-btn" id="musicBtn" onclick="toggleMusic()" title="Música ambiente">
+                <span class="audio-icon" id="musicIcon">🎧</span>
+            </button>
+            <div class="audio-tooltip" id="musicTooltip">
+                🎵 Clique para ativar
+            </div>
+        </div>
+
+        <!-- Botão Efeitos -->
+        <div class="audio-control-group">
+            <button class="audio-btn effects-btn" id="effectsBtn" onclick="toggleEffects()" title="Efeitos sonoros">
+                <span class="audio-icon" id="effectsIcon">🦗</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- 🎵 Áudios -->
+    <audio id="lofiMusic" loop preload="auto"></audio>
+    <audio id="nightSounds" loop preload="auto"></audio>
+    <audio id="owlSound" preload="auto"></audio>
 
     <script src="particles.js"></script>
     <script src="character.js"></script>
     <script src="ai.js"></script>
+    <script src="music.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

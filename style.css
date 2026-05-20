@@ -24,14 +24,12 @@ html, body {
     position: relative;
 }
 
-/* No celular, volta o cursor normal (touch não precisa) */
 @media (hover: none) and (pointer: coarse) {
     * {
         cursor: auto;
     }
 }
 
-/* ---- Canvas de Partículas ---- */
 #particleCanvas {
     position: fixed;
     top: 0;
@@ -42,7 +40,6 @@ html, body {
     pointer-events: none;
 }
 
-/* ---- Cena Principal ---- */
 .scene {
     position: relative;
     width: 100%;
@@ -50,7 +47,6 @@ html, body {
     z-index: 1;
 }
 
-/* ---- Lua ---- */
 .moon {
     position: absolute;
     top: 40px;
@@ -85,7 +81,6 @@ html, body {
     50% { transform: translateY(-10px); }
 }
 
-/* ---- Estrelas ---- */
 .star {
     position: absolute;
     background: white;
@@ -99,7 +94,6 @@ html, body {
     50% { opacity: 1; transform: scale(1.5); }
 }
 
-/* ---- Container Principal ---- */
 .main-container {
     display: flex;
     justify-content: center;
@@ -111,7 +105,6 @@ html, body {
     position: relative;
 }
 
-/* ---- Área do Personagem ---- */
 .character-area {
     flex: 1;
     display: flex;
@@ -128,7 +121,7 @@ html, body {
     background: transparent;
     max-width: 100%;
     height: auto;
-    margin-bottom: -120px; /* aproxima MUITO mais do status */
+    margin-bottom: -120px;
 }
 
 .character-status {
@@ -167,7 +160,6 @@ html, body {
     }
 }
 
-/* ---- Área do Chat ---- */
 .chat-area {
     flex: 1;
     max-width: 420px;
@@ -205,7 +197,6 @@ html, body {
     50% { transform: translateY(-3px); }
 }
 
-/* ---- Mensagens ---- */
 .chat-messages {
     flex: 1;
     overflow-y: auto;
@@ -269,7 +260,6 @@ html, body {
     margin-top: 5px;
 }
 
-/* ---- Input ---- */
 .chat-input-area {
     padding: 12px;
     border-top: 1px solid rgba(138, 130, 255, 0.15);
@@ -327,7 +317,6 @@ html, body {
     transform: scale(0.95);
 }
 
-/* ---- Chão ---- */
 .ground {
     position: fixed;
     bottom: 0;
@@ -357,7 +346,6 @@ html, body {
         );
 }
 
-/* ---- Loading dots ---- */
 .loading-dots::after {
     content: '';
     animation: dots 1.5s steps(4, end) infinite;
@@ -371,8 +359,141 @@ html, body {
 }
 
 /* ============================================
-   📱 RESPONSIVO - TABLET (até 900px)
+   🎵 CONTROLES DE ÁUDIO (Música + Efeitos)
    ============================================ */
+
+.audio-controls {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.audio-control-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.audio-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(99, 102, 241, 0.3);
+    border: 2px solid rgba(196, 181, 253, 0.5);
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    box-shadow: 
+        0 4px 20px rgba(138, 130, 255, 0.3),
+        0 0 30px rgba(138, 130, 255, 0.2);
+    animation: musicPulse 3s ease-in-out infinite;
+}
+
+.audio-btn:hover {
+    background: rgba(99, 102, 241, 0.5);
+    transform: scale(1.1);
+    box-shadow: 
+        0 4px 30px rgba(138, 130, 255, 0.5),
+        0 0 50px rgba(138, 130, 255, 0.3);
+}
+
+.audio-btn:active {
+    transform: scale(0.95);
+}
+
+/* Botão de efeitos - cor diferente */
+.effects-btn {
+    background: rgba(99, 222, 161, 0.25);
+    border-color: rgba(134, 239, 172, 0.5);
+    box-shadow: 
+        0 4px 20px rgba(99, 222, 161, 0.3),
+        0 0 30px rgba(99, 222, 161, 0.2);
+}
+
+.effects-btn:hover {
+    background: rgba(99, 222, 161, 0.4);
+    box-shadow: 
+        0 4px 30px rgba(99, 222, 161, 0.5),
+        0 0 50px rgba(99, 222, 161, 0.3);
+}
+
+/* Botões desativados (mudos) */
+.audio-btn.muted {
+    background: rgba(100, 100, 100, 0.3);
+    border-color: rgba(150, 150, 150, 0.4);
+    box-shadow: none;
+    animation: none;
+}
+
+.audio-btn.muted .audio-icon {
+    opacity: 0.5;
+}
+
+.audio-icon {
+    font-size: 20px;
+    transition: transform 0.3s ease;
+}
+
+.audio-btn.playing .audio-icon {
+    animation: musicNote 2s ease-in-out infinite;
+}
+
+@keyframes musicPulse {
+    0%, 100% {
+        box-shadow: 
+            0 4px 20px rgba(138, 130, 255, 0.3),
+            0 0 30px rgba(138, 130, 255, 0.2);
+    }
+    50% {
+        box-shadow: 
+            0 4px 30px rgba(138, 130, 255, 0.5),
+            0 0 50px rgba(138, 130, 255, 0.4);
+    }
+}
+
+@keyframes musicNote {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    25% { transform: scale(1.1) rotate(-5deg); }
+    75% { transform: scale(1.1) rotate(5deg); }
+}
+
+.audio-tooltip {
+    background: rgba(99, 102, 241, 0.4);
+    color: white;
+    padding: 10px 16px;
+    border-radius: 20px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 8px;
+    border: 1px solid rgba(196, 181, 253, 0.5);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(138, 130, 255, 0.3);
+    animation: tooltipFloat 2s ease-in-out infinite;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+}
+
+.audio-tooltip.visible {
+    opacity: 1;
+}
+
+@keyframes tooltipFloat {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(5px); }
+}
+
+/* ============================================
+   📱 RESPONSIVO
+   ============================================ */
+
 @media (max-width: 900px) {
     html, body {
         overflow-y: auto;
@@ -420,16 +541,12 @@ html, body {
     }
 }
 
-/* ============================================
-   📱 RESPONSIVO - CELULAR (até 600px)
-   ============================================ */
 @media (max-width: 600px) {
     html, body {
         overflow-y: auto;
         overflow-x: hidden;
     }
 
-    /* Lua menor no canto */
     .moon {
         width: 50px;
         height: 50px;
@@ -444,7 +561,6 @@ html, body {
         right: 10px;
     }
 
-    /* Container ajustado */
     .main-container {
         flex-direction: column;
         padding: 10px;
@@ -454,7 +570,6 @@ html, body {
         min-height: calc(100vh - 60px);
     }
 
-    /* Personagem GRANDE no celular */
     .character-area {
         max-width: 100%;
         width: 100%;
@@ -471,7 +586,6 @@ html, body {
         margin-top: 10px;
     }
 
-    /* Chat ajustado pro celular */
     .chat-area {
         max-width: 100%;
         width: 100%;
@@ -502,7 +616,6 @@ html, body {
         font-size: 13px;
     }
 
-    /* Input maior pra dedo */
     .chat-input-area {
         padding: 10px;
         gap: 6px;
@@ -519,20 +632,35 @@ html, body {
         font-size: 16px;
     }
 
-    /* Chão menor */
     .ground {
         height: 50px;
     }
 
-    /* Título da página */
     .chat-header span:last-child {
         font-size: 8px;
     }
+
+    .audio-controls {
+        bottom: 15px;
+        left: 15px;
+        gap: 10px;
+    }
+
+    .audio-btn {
+        width: 42px;
+        height: 42px;
+    }
+
+    .audio-icon {
+        font-size: 16px;
+    }
+
+    .audio-tooltip {
+        font-size: 6px;
+        padding: 8px 12px;
+    }
 }
 
-/* ============================================
-   📱 RESPONSIVO - CELULAR PEQUENO (até 380px)
-   ============================================ */
 @media (max-width: 380px) {
     .moon {
         width: 40px;
@@ -571,9 +699,6 @@ html, body {
     }
 }
 
-/* ============================================
-   🔄 LANDSCAPE (celular deitado)
-   ============================================ */
 @media (max-height: 500px) and (orientation: landscape) {
     .main-container {
         flex-direction: row;
