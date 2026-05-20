@@ -78,6 +78,20 @@ async function sendCommand() {
     addMessage(text, true);
     commandInput.value = '';
 
+    // 📊 Incrementa contador de comandos
+    if (typeof incrementCommandCount === 'function') {
+        incrementCommandCount();
+    }
+
+    // 🌙 PRIMEIRO: Verifica se é uma pergunta pessoal sobre o Arian
+    if (typeof checkPersonalResponse === 'function') {
+        const wasPersonal = await checkPersonalResponse(text);
+        if (wasPersonal) {
+            return; // Conversa pessoal foi tratada, sai daqui
+        }
+    }
+
+    // Senão, segue o fluxo normal de comandos
     commandInput.disabled = true;
     sendBtn.disabled = true;
 

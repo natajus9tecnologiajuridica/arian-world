@@ -46,17 +46,7 @@
                 <div class="chat-messages" id="chatMessages">
                     <div class="message bot-message">
                         <span class="msg-icon">🌙</span>
-                        <p>Olá! Eu sou o <strong>Arian</strong>. Você pode me pedir para fazer muitas coisas, tente:</p>
-                    </div>
-                    <div class="message bot-message">
-                        <p>
-                            🚶 <strong>"ande"</strong> / 🏃 <strong>"corra"</strong><br>
-                            🦘 <strong>"pule"</strong> / 💃 <strong>"dance"</strong><br>
-                            🪑 <strong>"sente"</strong> / 😴 <strong>"durma"</strong><br>
-                            👋 <strong>"acene"</strong> / 😂 <strong>"ria"</strong><br>
-                            😢 <strong>"chore"</strong> / 🤔 <strong>"pense"</strong><br>
-                            😱 <strong>"se assuste"</strong> / 🌙 <strong>"pare"</strong>
-                        </p>
+                        <p>Olá! Eu sou o <strong>Arian</strong>. Clique no botão <strong>?</strong> para ver tudo que sei fazer!</p>
                     </div>
                 </div>
 
@@ -72,9 +62,8 @@
 
     <div class="ground"></div>
 
-    <!-- 🎵 Controles de Áudio -->
+    <!-- 🎵 Controles de Áudio (Música + Efeitos) -->
     <div class="audio-controls" id="audioControls">
-        <!-- Botão Música -->
         <div class="audio-control-group">
             <button class="audio-btn" id="musicBtn" onclick="toggleMusic()" title="Música ambiente">
                 <span class="audio-icon" id="musicIcon">🎧</span>
@@ -84,11 +73,42 @@
             </div>
         </div>
 
-        <!-- Botão Efeitos -->
         <div class="audio-control-group">
             <button class="audio-btn effects-btn" id="effectsBtn" onclick="toggleEffects()" title="Efeitos sonoros">
                 <span class="audio-icon" id="effectsIcon">🦗</span>
             </button>
+        </div>
+    </div>
+
+    <!-- ❓ Botão de Ajuda (Painel de Comandos) -->
+    <button class="help-btn" id="helpBtn" onclick="toggleHelpPanel()" title="Ver comandos">
+        <canvas class="help-icon-canvas" id="helpIconCanvas" width="40" height="40"></canvas>
+    </button>
+
+    <!-- 📜 Painel de Ajuda (Modal com Cartões) -->
+    <div class="help-overlay" id="helpOverlay" onclick="closeHelpIfOverlay(event)">
+        <div class="help-panel" id="helpPanel">
+            <div class="help-header">
+                <span class="help-title">📜 Guia do Arian World</span>
+                <button class="help-close" onclick="toggleHelpPanel()">✕</button>
+            </div>
+
+            <div class="help-stats">
+                <span>📊 Você executou <strong id="commandCounter">0</strong> comandos!</span>
+            </div>
+
+            <div class="help-content" id="helpContent">
+                <!-- Conteúdo gerado pelo JS -->
+            </div>
+
+            <div class="help-footer">
+                <button class="surprise-btn" onclick="randomCommand()">
+                    🎲 Surpresa!
+                </button>
+                <button class="tour-btn" onclick="startTour()">
+                    🎬 Modo Tour
+                </button>
+            </div>
         </div>
     </div>
 
@@ -100,7 +120,9 @@
     <script src="particles.js"></script>
     <script src="character.js"></script>
     <script src="ai.js"></script>
+    <script src="arian-personality.js"></script>
     <script src="music.js"></script>
+    <script src="help-panel.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
