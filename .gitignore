@@ -1,0 +1,16 @@
+# VS Code
+.vscode/
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Ambiente (caso use depois)
+.env
+.env.local
+
+# Dependências (caso use npm depois)
+node_modules/
