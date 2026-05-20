@@ -1,5 +1,5 @@
 // ============================================
-// 🤖 PERSONAGEM PIXEL ART ANIMADO - V4
+// 🤖 PERSONAGEM PIXEL ART ANIMADO - V5
 // ============================================
 
 const charCanvas = document.getElementById('characterCanvas');
@@ -8,10 +8,10 @@ const ctx = charCanvas.getContext('2d');
 // Escala do pixel - ajusta automaticamente pro tamanho da tela
 function getPixelSize() {
     const width = window.innerWidth;
-    if (width < 380) return 7;      // celular pequeno - ARIAN GRANDE!
-    if (width < 600) return 8;      // celular - ARIAN GRANDE!
+    if (width < 380) return 7;      // celular pequeno
+    if (width < 600) return 8;      // celular
     if (width < 900) return 7;      // tablet
-    return 6;                        // desktop
+    return 10;                      // desktop
 }
 
 let PIXEL = getPixelSize();
@@ -55,22 +55,40 @@ function drawPixel(x, y, color, size = PIXEL) {
     );
 }
 
-// ---- SOMBRA INTELIGENTE ----
-function drawShadowAtFeet(feetYPixel, widthScale = 1, opacity = 0.35) {
+// ---- SOMBRA INTELIGENTE E PROPORCIONAL ----
+function drawShadowAtFeet(feetYPixel, widthScale = 1, opacity = 0.45) {
     ctx.save();
-    ctx.fillStyle = `rgba(0, 0, 0, ${opacity})`;
     
     const shadowY = CENTER_Y + (feetYPixel + 1) * PIXEL - (PIXEL * 20);
     
+    // Sombra proporcional ao tamanho do personagem!
+    const shadowWidth = (PIXEL * 10) * widthScale;
+    const shadowHeight = PIXEL * 1.5;
+    
+    // Camada externa (mais difusa)
     ctx.beginPath();
+    ctx.fillStyle = `rgba(0, 0, 0, ${opacity * 0.4})`;
     ctx.ellipse(
         CENTER_X,
         shadowY,
-        38 * widthScale,
-        5,
+        shadowWidth * 1.3,
+        shadowHeight * 1.5,
         0, 0, Math.PI * 2
     );
     ctx.fill();
+    
+    // Camada principal (mais escura)
+    ctx.beginPath();
+    ctx.fillStyle = `rgba(0, 0, 0, ${opacity})`;
+    ctx.ellipse(
+        CENTER_X,
+        shadowY,
+        shadowWidth,
+        shadowHeight,
+        0, 0, Math.PI * 2
+    );
+    ctx.fill();
+    
     ctx.restore();
 }
 
@@ -211,7 +229,7 @@ const animations = {
             const armsUp = frame >= 1 && frame <= 4;
 
             const heightFactor = Math.abs(jumpHeight) / 10;
-            drawShadowAtFeet(18, 1 - heightFactor * 0.4, 0.35 - heightFactor * 0.15);
+            drawShadowAtFeet(18, 1 - heightFactor * 0.4, 0.45 - heightFactor * 0.2);
 
             const oY = jumpHeight;
 
@@ -297,7 +315,7 @@ const animations = {
             const breathe = frame === 0 ? 0 : -1;
             const sitDown = 4;
 
-            drawShadowAtFeet(18 + sitDown + breathe, 1.4, 0.4);
+            drawShadowAtFeet(18 + sitDown + breathe, 1.4, 0.5);
 
             for (let x = 2; x <= 13; x++) drawPixel(x, 0 + sitDown + breathe, COLORS.hair);
             for (let x = 1; x <= 14; x++) drawPixel(x, 1 + sitDown + breathe, COLORS.hair);
@@ -375,7 +393,7 @@ const animations = {
             const armPose = frame;
             const bounce = [0, -2, 0, -2][frame];
 
-            drawShadowAtFeet(18, 1 + Math.abs(bounce) * 0.05, 0.35 - Math.abs(bounce) * 0.03);
+            drawShadowAtFeet(18, 1 + Math.abs(bounce) * 0.05, 0.45 - Math.abs(bounce) * 0.03);
 
             for (let x = 2; x <= 13; x++) drawPixel(x + sway, 0 + bounce, COLORS.hair);
             for (let x = 1; x <= 14; x++) drawPixel(x + sway, 1 + bounce, COLORS.hair);
@@ -578,7 +596,7 @@ const animations = {
             const bounce = [0, -2, 0, -2][frame];
             const shake = [-1, 1, -1, 1][frame];
 
-            drawShadowAtFeet(18, 1.1, 0.35);
+            drawShadowAtFeet(18, 1.1, 0.45);
 
             for (let x = 2; x <= 13; x++) drawPixel(x + shake, 0 + bounce, COLORS.hair);
             for (let x = 1; x <= 14; x++) drawPixel(x + shake, 1 + bounce, COLORS.hair);
@@ -590,7 +608,6 @@ const animations = {
                 }
             }
 
-            // Olhos fechados de tanto rir (^_^)
             drawPixel(3 + shake, 5 + bounce, COLORS.pupils);
             drawPixel(4 + shake, 4 + bounce, COLORS.pupils);
             drawPixel(5 + shake, 4 + bounce, COLORS.pupils);
@@ -601,7 +618,6 @@ const animations = {
             drawPixel(11 + shake, 4 + bounce, COLORS.pupils);
             drawPixel(12 + shake, 5 + bounce, COLORS.pupils);
 
-            // Boca aberta rindo
             for (let x = 5; x <= 10; x++) {
                 drawPixel(x + shake, 7 + bounce, COLORS.outline);
             }
@@ -609,7 +625,6 @@ const animations = {
                 drawPixel(x + shake, 8 + bounce, COLORS.mouth);
             }
 
-            // Blush forte
             drawPixel(2 + shake, 6 + bounce, COLORS.blush);
             drawPixel(3 + shake, 6 + bounce, COLORS.blush);
             drawPixel(12 + shake, 6 + bounce, COLORS.blush);
@@ -621,7 +636,6 @@ const animations = {
                 }
             }
 
-            // Braços segurando a barriga
             drawPixel(3, 10 + bounce, COLORS.shirt);
             drawPixel(3, 11 + bounce, COLORS.shirt);
             drawPixel(4, 12 + bounce, COLORS.shirt);
@@ -668,7 +682,6 @@ const animations = {
                 }
             }
 
-            // Olhos fechados/apertados
             drawPixel(3, 6 + breathe, COLORS.outline);
             drawPixel(4, 6 + breathe, COLORS.outline);
             drawPixel(5, 6 + breathe, COLORS.outline);
@@ -679,7 +692,6 @@ const animations = {
             drawPixel(11, 6 + breathe, COLORS.outline);
             drawPixel(12, 6 + breathe, COLORS.outline);
 
-            // LÁGRIMAS
             drawPixel(3, 7 + breathe + tearFall, '#60a5fa');
             drawPixel(3, 8 + breathe + tearFall, '#3b82f6');
             
@@ -694,7 +706,6 @@ const animations = {
             drawPixel(2, 7 + breathe, COLORS.blush);
             drawPixel(13, 7 + breathe, COLORS.blush);
 
-            // Boca triste
             drawPixel(6, 9 + breathe, COLORS.mouth);
             drawPixel(7, 8 + breathe, COLORS.mouth);
             drawPixel(8, 8 + breathe, COLORS.mouth);
@@ -706,7 +717,6 @@ const animations = {
                 }
             }
 
-            // Braços limpando os olhos
             drawPixel(4, 10 + breathe, COLORS.shirt);
             drawPixel(4, 11 + breathe, COLORS.shirt);
             drawPixel(5, 9 + breathe, COLORS.skin);
@@ -751,7 +761,6 @@ const animations = {
                 }
             }
 
-            // Olhos olhando pra cima
             drawPixel(4, 4 + breathe, COLORS.eyes);
             drawPixel(5, 4 + breathe, COLORS.eyes);
             drawPixel(10, 4 + breathe, COLORS.eyes);
@@ -762,7 +771,6 @@ const animations = {
             drawPixel(7, 7 + breathe, COLORS.mouth);
             drawPixel(8, 7 + breathe, COLORS.mouth);
 
-            // BOLHA DE PENSAMENTO
             drawPixel(15, 3 + breathe, '#fff');
             drawPixel(16, 2 + breathe, '#fff');
             
@@ -794,7 +802,6 @@ const animations = {
                 }
             }
 
-            // Braço direito coçando o queixo
             drawPixel(12, 9 + breathe, COLORS.shirt);
             drawPixel(13, 8 + breathe, COLORS.shirt);
             drawPixel(13, 7 + breathe, COLORS.shirt);
@@ -829,7 +836,6 @@ const animations = {
 
             drawShadowAtFeet(18 + bounce);
 
-            // Cabelo arrepiado
             for (let x = 2; x <= 13; x++) drawPixel(x + shake, 0 + bounce, COLORS.hair);
             drawPixel(3 + shake, -1 + bounce, COLORS.hair);
             drawPixel(5 + shake, -2 + bounce, COLORS.hair);
@@ -846,7 +852,6 @@ const animations = {
                 }
             }
 
-            // Olhos arregalados
             for (let x = 3; x <= 6; x++) {
                 for (let y = 4; y <= 6; y++) {
                     drawPixel(x + shake, y + bounce, COLORS.eyes);
@@ -860,7 +865,6 @@ const animations = {
             drawPixel(5 + shake, 5 + bounce, COLORS.pupils);
             drawPixel(10 + shake, 5 + bounce, COLORS.pupils);
 
-            // Boca aberta (O)
             drawPixel(7 + shake, 7 + bounce, COLORS.outline);
             drawPixel(8 + shake, 7 + bounce, COLORS.outline);
             drawPixel(7 + shake, 8 + bounce, COLORS.mouth);
@@ -872,7 +876,6 @@ const animations = {
                 }
             }
 
-            // Braços levantados
             for (let y = 5; y <= 9; y++) {
                 drawPixel(2, y + bounce, COLORS.shirt);
                 drawPixel(13, y + bounce, COLORS.shirt);
@@ -880,7 +883,6 @@ const animations = {
             drawPixel(2, 4 + bounce, COLORS.skin);
             drawPixel(13, 4 + bounce, COLORS.skin);
 
-            // Gotas de suor
             drawPixel(0, 4 + bounce, '#60a5fa');
             drawPixel(15, 5 + bounce, '#60a5fa');
 
@@ -889,7 +891,6 @@ const animations = {
                 drawPixel(x, 16 + bounce, COLORS.pants);
             }
 
-            // Pernas tremendo
             for (let x = 4; x <= 6; x++) {
                 drawPixel(x, 17 + bounce, COLORS.pants);
                 drawPixel(x, 18 + bounce, COLORS.shoes);
@@ -910,7 +911,7 @@ const animations = {
             const armOffset = [2, 0, -2, 0][frame];
             const bounce = [0, -2, 0, -2][frame];
 
-            drawShadowAtFeet(18, 0.9 - Math.abs(bounce) * 0.05, 0.35 - Math.abs(bounce) * 0.05);
+            drawShadowAtFeet(18, 0.9 - Math.abs(bounce) * 0.05, 0.45 - Math.abs(bounce) * 0.05);
 
             for (let x = 3; x <= 14; x++) drawPixel(x, 0 + bounce, COLORS.hair);
             for (let x = 2; x <= 15; x++) drawPixel(x, 1 + bounce, COLORS.hair);
