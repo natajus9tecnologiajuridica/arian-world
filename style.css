@@ -371,12 +371,16 @@ html, body {
     display: flex;
     flex-direction: row;
     gap: 12px;
+    align-items: center;
 }
 
 .audio-control-group {
     display: flex;
     align-items: center;
     gap: 10px;
+    position: relative;
+    width: 50px;
+    height: 50px;
 }
 
 .audio-btn {
@@ -396,6 +400,7 @@ html, body {
         0 4px 20px rgba(138, 130, 255, 0.3),
         0 0 30px rgba(138, 130, 255, 0.2);
     animation: musicPulse 3s ease-in-out infinite;
+    flex-shrink: 0;
 }
 
 .audio-btn:hover {
@@ -464,7 +469,12 @@ html, body {
     75% { transform: scale(1.1) rotate(5deg); }
 }
 
+/* 🎯 TOOLTIP - Alinhado perfeitamente com o centro do botão */
 .audio-tooltip {
+    position: absolute;
+    left: 60px;
+    top: 25px; /* Metade da altura do botão (50px / 2) */
+    transform: translateY(-50%);
     background: rgba(99, 102, 241, 0.4);
     color: white;
     padding: 10px 16px;
@@ -478,6 +488,10 @@ html, body {
     opacity: 0;
     transition: opacity 0.5s ease;
     pointer-events: none;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    line-height: 1;
 }
 
 .audio-tooltip.visible {
@@ -485,8 +499,8 @@ html, body {
 }
 
 @keyframes tooltipFloat {
-    0%, 100% { transform: translateX(0); }
-    50% { transform: translateX(5px); }
+    0%, 100% { transform: translateY(-50%) translateX(0); }
+    50% { transform: translateY(-50%) translateX(5px); }
 }
 
 /* ============================================
@@ -955,6 +969,12 @@ html, body {
         left: auto;
         flex-direction: column;
         gap: 10px;
+        align-items: flex-end;
+    }
+
+    .audio-control-group {
+        width: 42px;
+        height: 42px;
     }
 
     .audio-btn {
@@ -966,14 +986,24 @@ html, body {
         font-size: 16px;
     }
 
+    /* 🎯 TOOLTIP no celular - alinhado com o centro do botão */
     .audio-tooltip {
         font-size: 6px;
         padding: 8px 12px;
-        order: -1;
+        position: absolute;
+        right: 55px;
+        left: auto;
+        top: 21px; /* Metade da altura do botão (42px / 2) */
+        transform: translateY(-50%);
     }
 
     .audio-control-group {
-        flex-direction: row-reverse;
+        flex-direction: row;
+    }
+
+    @keyframes tooltipFloat {
+        0%, 100% { transform: translateY(-50%) translateX(0); }
+        50% { transform: translateY(-50%) translateX(-5px); }
     }
 
     /* ❓ AJUDA no celular: TOPO ESQUERDO */
@@ -1107,6 +1137,11 @@ html, body {
         padding: 10px;
     }
 
+    .audio-control-group {
+        width: 38px;
+        height: 38px;
+    }
+
     .audio-btn {
         width: 38px;
         height: 38px;
@@ -1114,6 +1149,10 @@ html, body {
 
     .audio-icon {
         font-size: 14px;
+    }
+
+    .audio-tooltip {
+        top: 19px; /* Metade da altura do botão (38px / 2) */
     }
 
     .help-btn {
