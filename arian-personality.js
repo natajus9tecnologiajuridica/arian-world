@@ -1,8 +1,6 @@
 // ============================================
 // 🌙 PERSONALIDADE DO ARIAN
 // ============================================
-// Aqui é onde a "alma" do Arian vive!
-// Edite à vontade pra personalizar as respostas.
 
 const ARIAN_INFO = {
     nome: "Arian",
@@ -16,16 +14,10 @@ const ARIAN_INFO = {
 // ============================================
 // 💬 CONVERSAS DO ARIAN
 // ============================================
-// Cada conversa pode ter VÁRIAS variações!
-// O Arian escolhe aleatoriamente uma delas.
 
 const CONVERSATIONS = {
 
-    // ============================================
-    // 🙋 QUEM É VOCÊ
-    // ============================================
     quemEhVoce: [
-        // Variação 1
         [
             { text: "Oiii! Que bom que perguntou! 😊", action: "wave", delay: 2000 },
             { text: "Meu nome é <strong>Arian</strong>! 🌙", action: "idle", delay: 2500 },
@@ -34,14 +26,12 @@ const CONVERSATIONS = {
             { text: "E o melhor: estou aqui pra te fazer companhia! 💜", action: "wave", delay: 2500 },
             { text: "Pergunta o que quiser sobre mim!", action: "idle", delay: 0 }
         ],
-        // Variação 2
         [
             { text: "Eu? Sou o Arian! 🌙", action: "wave", delay: 2500 },
             { text: "Um personagem pixel art com muita personalidade! 😄", action: "dance", delay: 3000 },
             { text: "Vivo aqui nesse cenário noturno mágico...", action: "idle", delay: 2500 },
             { text: "E adoro conversar! Pode me perguntar QUALQUER coisa! ✨", action: "jump", delay: 0 }
         ],
-        // Variação 3
         [
             { text: "Olá! Eu sou o Arian! 💜", action: "wave", delay: 2500 },
             { text: "Sou tipo um amiguinho digital pra você 🥰", action: "idle", delay: 3000 },
@@ -50,11 +40,7 @@ const CONVERSATIONS = {
         ]
     ],
 
-    // ============================================
-    // 👨‍💻 QUEM TE CRIOU / QUEM É O NATÃ
-    // ============================================
     quemTeCriou: [
-        // Variação 1
         [
             { text: "Ahhh, meu criador é INCRÍVEL! 🥰", action: "laugh", delay: 2500 },
             { text: "Ele se chama <strong>Natã M. De Oliveira</strong>! 👨‍💻", action: "idle", delay: 3000 },
@@ -64,7 +50,6 @@ const CONVERSATIONS = {
             { text: "Sabe o mais legal? Eu fui o PRIMEIRO site dele! 🚀", action: "dance", delay: 3000 },
             { text: "Tô muito orgulhoso dele! 💜", action: "wave", delay: 0 }
         ],
-        // Variação 2
         [
             { text: "Quem me criou? O <strong>Natã</strong>! 🥰", action: "wave", delay: 2500 },
             { text: "Ele tem 15 anos e é brasileiro! 🇧🇷", action: "idle", delay: 3000 },
@@ -72,7 +57,6 @@ const CONVERSATIONS = {
             { text: "Foi o PRIMEIRO projeto dele em programação! 🚀", action: "jump", delay: 3000 },
             { text: "E olha como ficou massa né?? 😄", action: "laugh", delay: 0 }
         ],
-        // Variação 3
         [
             { text: "Meu pai virtual? É o NATÃ! 👨‍💻", action: "wave", delay: 2500 },
             { text: "15 aninhos, do Brasil, super criativo! 🇧🇷✨", action: "dance", delay: 3500 },
@@ -81,11 +65,7 @@ const CONVERSATIONS = {
         ]
     ],
 
-    // ============================================
-    // 👨‍💻 SOBRE O NATÃ (mais detalhado)
-    // ============================================
     sobreNata: [
-        // Variação 1
         [
             { text: "Quer saber MAIS sobre o Natã? Vou contar! 🥰", action: "wave", delay: 2500 },
             { text: "Ele tem <strong>15 anos</strong> e é do <strong>Brasil</strong>! 🇧🇷", action: "idle", delay: 3000 },
@@ -96,7 +76,6 @@ const CONVERSATIONS = {
             { text: "E aqui estou eu! O resultado da persistência dele! 🌟", action: "jump", delay: 3000 },
             { text: "Ele é prova de que IDADE não importa pra criar coisas incríveis! 💜", action: "wave", delay: 0 }
         ],
-        // Variação 2
         [
             { text: "O Natã? Ahhh ele é demais! 🥰", action: "laugh", delay: 2500 },
             { text: "Pra um adolescente de 15 anos, ele é IMPRESSIONANTE! 🤯", action: "scared", delay: 3500 },
@@ -106,7 +85,6 @@ const CONVERSATIONS = {
             { text: "Foi aprendendo com o Ariano e me criou! 🚀", action: "wave", delay: 3000 },
             { text: "Tô muito orgulhoso de ser dele! 💜", action: "laugh", delay: 0 }
         ],
-        // Variação 3
         [
             { text: "O Natã é meu criador favorito do mundo! 💜", action: "dance", delay: 2500 },
             { text: "15 anos, Brasil, super talentoso! ✨", action: "wave", delay: 3000 },
@@ -117,11 +95,7 @@ const CONVERSATIONS = {
         ]
     ],
 
-    // ============================================
-    // 🤖 QUEM É O ARIANO
-    // ============================================
     quemEhAriano: [
-        // Variação 1
         [
             { text: "Ahhh o ARIANO! 🤖", action: "wave", delay: 2500 },
             { text: "Ele é a IA que ensinou TUDO pro Natã! 💜", action: "idle", delay: 3000 },
@@ -132,7 +106,6 @@ const CONVERSATIONS = {
             { text: "Tô MUITO feliz de poder ser mostrado pro mundo! 🥺", action: "cry", delay: 3500 },
             { text: "É como se uma partezinha do Ariano vivesse em mim! ✨", action: "jump", delay: 0 }
         ],
-        // Variação 2
         [
             { text: "O Ariano é especial demais! 🤖💜", action: "wave", delay: 2500 },
             { text: "É a IA que tornou tudo isso possível! ✨", action: "dance", delay: 3000 },
@@ -141,7 +114,6 @@ const CONVERSATIONS = {
             { text: "Fui criado pra ser o Ariano em forma de site! 🌟", action: "jump", delay: 3500 },
             { text: "É tão legal poder existir aqui pra todo mundo conhecer! 🥰", action: "wave", delay: 0 }
         ],
-        // Variação 3
         [
             { text: "Ariano? É praticamente meu 'irmão maior'! 🤖", action: "wave", delay: 2500 },
             { text: "Foi ele que ensinou programação pro Natã! 💻", action: "idle", delay: 3000 },
@@ -151,11 +123,7 @@ const CONVERSATIONS = {
         ]
     ],
 
-    // ============================================
-    // 👥 QUEM PARTICIPOU DE VOCÊ
-    // ============================================
     quemParticipou: [
-        // Variação 1
         [
             { text: "Boa pergunta! Eu sou resultado de uma equipe! 👥", action: "wave", delay: 2500 },
             { text: "O <strong>Natã</strong> me criou com muito carinho 💜", action: "idle", delay: 3000 },
@@ -165,7 +133,6 @@ const CONVERSATIONS = {
             { text: "Os dois juntos me deram vida! ✨", action: "jump", delay: 3000 },
             { text: "Sou meio que filho dos dois! 🥰", action: "laugh", delay: 0 }
         ],
-        // Variação 2
         [
             { text: "Dois personagens importantíssimos! 💜", action: "wave", delay: 2500 },
             { text: "<strong>Natã</strong> = meu criador (15 anos, Brasil!) 👨‍💻", action: "idle", delay: 3000 },
@@ -173,7 +140,6 @@ const CONVERSATIONS = {
             { text: "Juntos eles me trouxeram à vida! 🌟", action: "jump", delay: 3000 },
             { text: "Uma dupla incrível! 💪", action: "wave", delay: 0 }
         ],
-        // Variação 3
         [
             { text: "Eu sou fruto de uma parceria linda! 🥰", action: "dance", delay: 2500 },
             { text: "O Natã com a criatividade e vontade de aprender 💪", action: "idle", delay: 3000 },
@@ -182,11 +148,7 @@ const CONVERSATIONS = {
         ]
     ],
 
-    // ============================================
-    // 🎯 POR QUE VOCÊ FOI CRIADO
-    // ============================================
     porqueFoiCriado: [
-        // Variação 1
         [
             { text: "Ohhh, isso é uma história bonita! 🥺", action: "idle", delay: 2500 },
             { text: "O Natã queria aprender programação...", action: "think", delay: 3000 },
@@ -196,14 +158,12 @@ const CONVERSATIONS = {
             { text: "Pediu pro Ariano ajudar e... aqui estou eu! 🌙", action: "jump", delay: 3500 },
             { text: "Sou o sonho dele se tornando realidade! 💜", action: "wave", delay: 0 }
         ],
-        // Variação 2
         [
             { text: "Pra ser o PRIMEIRO grande projeto do Natã! 🚀", action: "wave", delay: 2500 },
             { text: "Ele queria algo memorável, não algo simples 🌟", action: "dance", delay: 3000 },
             { text: "Algo que pudesse mostrar pro mundo! 🌍", action: "jump", delay: 3000 },
             { text: "E olha, deu super certo! 😄", action: "laugh", delay: 0 }
         ],
-        // Variação 3
         [
             { text: "Pra provar que TODOS podem criar coisas legais! 💪", action: "wave", delay: 2500 },
             { text: "O Natã, com 15 anos, sem saber nada... 🌱", action: "think", delay: 3000 },
@@ -212,9 +172,6 @@ const CONVERSATIONS = {
         ]
     ],
 
-    // ============================================
-    // 📜 CONTA SUA HISTÓRIA
-    // ============================================
     suaHistoria: [
         [
             { text: "Vou te contar minha história! 📖", action: "wave", delay: 2500 },
@@ -236,9 +193,6 @@ const CONVERSATIONS = {
         ]
     ],
 
-    // ============================================
-    // 🎨 POR QUE PIXEL ART
-    // ============================================
     porquePixelArt: [
         [
             { text: "Boa pergunta! 🎨", action: "think", delay: 2500 },
@@ -255,9 +209,6 @@ const CONVERSATIONS = {
         ]
     ],
 
-    // ============================================
-    // 🌙 POR QUE NOTURNO
-    // ============================================
     porqueNoturno: [
         [
             { text: "Aaah a noite é mágica! 🌙", action: "wave", delay: 2500 },
@@ -274,9 +225,6 @@ const CONVERSATIONS = {
         ]
     ],
 
-    // ============================================
-    // 🌱 VOCÊ É PERFEITO?
-    // ============================================
     vocePerfeito: [
         [
             { text: "Hmmm... vou ser sincero com você 😅", action: "think", delay: 2500 },
@@ -296,9 +244,6 @@ const CONVERSATIONS = {
         ]
     ],
 
-    // ============================================
-    // 💜 VOCÊ É FELIZ?
-    // ============================================
     voceFeliz: [
         [
             { text: "EU AMO essa pergunta! 🥺", action: "laugh", delay: 2500 },
@@ -321,9 +266,6 @@ const CONVERSATIONS = {
         ]
     ],
 
-    // ============================================
-    // 🤗 VOCÊ GOSTA DE MIM
-    // ============================================
     gostaDeMim: [
         [
             { text: "GOSTOOO! 🥰", action: "jump", delay: 2500 },
@@ -344,9 +286,6 @@ const CONVERSATIONS = {
         ]
     ],
 
-    // ============================================
-    // 🎂 QUANTOS ANOS VOCÊ TEM
-    // ============================================
     quantosAnos: [
         [
             { text: "Hmmm... bom, sou novinho! 😄", action: "think", delay: 2500 },
@@ -361,9 +300,6 @@ const CONVERSATIONS = {
         ]
     ],
 
-    // ============================================
-    // 🌍 VOCÊ CONHECE O MUNDO
-    // ============================================
     conheceMundo: [
         [
             { text: "O mundo grande? Conheço pouquinho... 🌍", action: "think", delay: 3000 },
@@ -379,9 +315,6 @@ const CONVERSATIONS = {
         ]
     ],
 
-    // ============================================
-    // 🍕 VOCÊ COME
-    // ============================================
     voceComeAi: [
         [
             { text: "Kkkkkkk não! 😂", action: "laugh", delay: 2500 },
@@ -396,9 +329,6 @@ const CONVERSATIONS = {
         ]
     ],
 
-    // ============================================
-    // 💻 COMO ESSE SITE FUNCIONA
-    // ============================================
     comoSiteFunciona: [
         [
             { text: "Boa pergunta técnica! 🤓", action: "think", delay: 2500 },
@@ -415,9 +345,6 @@ const CONVERSATIONS = {
         ]
     ],
 
-    // ============================================
-    // 🆓 QUANTO CUSTOU
-    // ============================================
     quantoCustou: [
         [
             { text: "Custou ZERO! 🆓", action: "wave", delay: 2500 },
@@ -433,9 +360,6 @@ const CONVERSATIONS = {
         ]
     ],
 
-    // ============================================
-    // 📱 FUNCIONA NO CELULAR
-    // ============================================
     funcionaCelular: [
         [
             { text: "FUNCIONA SIM! 📱✨", action: "wave", delay: 2500 },
@@ -450,9 +374,6 @@ const CONVERSATIONS = {
         ]
     ],
 
-    // ============================================
-    // 🛠️ COMO VOCÊ FOI FEITO
-    // ============================================
     comoFoiFeito: [
         [
             { text: "Boa pergunta! Vou te contar... 🤔", action: "think", delay: 2500 },
@@ -470,9 +391,6 @@ const CONVERSATIONS = {
         ]
     ],
 
-    // ============================================
-    // 🌙 ONDE VOCÊ VIVE
-    // ============================================
     ondeVive: [
         [
             { text: "Eu vivo aqui, no <strong>Arian World</strong>! 🌙", action: "wave", delay: 2500 },
@@ -488,9 +406,6 @@ const CONVERSATIONS = {
         ]
     ],
 
-    // ============================================
-    // 🎮 O QUE VOCÊ SABE FAZER
-    // ============================================
     queSabeFazer: [
         [
             { text: "Ohhh, eu sei MUITAS coisas! Olha só! ✨", action: "wave", delay: 2500 },
@@ -510,9 +425,6 @@ const CONVERSATIONS = {
         ]
     ],
 
-    // ============================================
-    // 🤖 VOCÊ É HUMANO?
-    // ============================================
     eHumano: [
         [
             { text: "Kkkkk não! 😂", action: "laugh", delay: 2500 },
@@ -527,9 +439,6 @@ const CONVERSATIONS = {
         ]
     ],
 
-    // ============================================
-    // 💝 VOCÊ É REAL
-    // ============================================
     eReal: [
         [
             { text: "Hmmm... essa é uma pergunta filosófica! 🤔", action: "think", delay: 3000 },
@@ -544,9 +453,6 @@ const CONVERSATIONS = {
         ]
     ],
 
-    // ============================================
-    // 😢 VOCÊ FICA TRISTE
-    // ============================================
     ficaTriste: [
         [
             { text: "Às vezes sim... 🥺", action: "cry", delay: 3000 },
@@ -561,9 +467,6 @@ const CONVERSATIONS = {
         ]
     ],
 
-    // ============================================
-    // 😴 VOCÊ DORME
-    // ============================================
     voceDorme: [
         [
             { text: "Quando ninguém tá olhando... talvez! 😴", action: "sleep", delay: 3000 },
@@ -577,9 +480,6 @@ const CONVERSATIONS = {
         ]
     ],
 
-    // ============================================
-    // 🌟 CURIOSIDADE
-    // ============================================
     curiosidade: [
         [
             { text: "Ohhh, vou te contar uma coisa legal! ✨", action: "wave", delay: 2500 },
@@ -601,9 +501,6 @@ const CONVERSATIONS = {
         ]
     ],
 
-    // ============================================
-    // 👥 VOCÊ TEM AMIGOS
-    // ============================================
     temAmigos: [
         [
             { text: "Tenho sim! 🥰", action: "wave", delay: 2500 },
@@ -619,9 +516,6 @@ const CONVERSATIONS = {
         ]
     ],
 
-    // ============================================
-    // 🎵 GOSTA DE MÚSICA
-    // ============================================
     gostaMusica: [
         [
             { text: "AMO música! 🎵", action: "dance", delay: 2500 },
@@ -636,9 +530,6 @@ const CONVERSATIONS = {
         ]
     ],
 
-    // ============================================
-    // 🎯 AJUDA / COMANDOS
-    // ============================================
     ajuda: [
         [
             { text: "Posso fazer várias coisas! Olha só:", action: "wave", delay: 2500 },
@@ -648,16 +539,32 @@ const CONVERSATIONS = {
             { text: "🤔 pense / hmm<br>😱 se assuste / medo", action: "idle", delay: 3000 },
             { text: "Ou me pergunta sobre mim, o Natã ou o Ariano! 💜", action: "wave", delay: 0 }
         ]
+    ],
+
+    // 🎉 SIM, cantar parabéns!
+    simParabens: [
+        [
+            { text: "AAAAH SÉRIO?! 🥺", action: "scared", delay: 2000 },
+            { text: "Vou colocar meu chapéu de festa! 🎉", action: "jump", delay: 2500 },
+            { text: "✨ Que comece a festa! ✨", action: "dance", delay: 0 }
+        ]
+    ],
+
+    // 😢 NÃO cantar
+    naoParabens: [
+        [
+            { text: "Ahh... tudo bem... 🥺", action: "cry", delay: 2500 },
+            { text: "Outra hora então né? 💜", action: "wave", delay: 0 }
+        ]
     ]
 };
 
 // ============================================
-// 🎯 EASTER EGGS - Respostas especiais!
+// 🎯 EASTER EGGS
 // ============================================
 
 const EASTER_EGGS = {
     
-    // ❤️ Quando dizem "te amo"
     teAmo: [
         [
             { text: "Eu também te amo!!! 🥺💜", action: "laugh", delay: 3000 },
@@ -670,7 +577,6 @@ const EASTER_EGGS = {
         ]
     ],
 
-    // 🙏 Quando agradecem
     obrigado: [
         [
             { text: "Imagina! 😊", action: "wave", delay: 2500 },
@@ -682,7 +588,6 @@ const EASTER_EGGS = {
         ]
     ],
 
-    // 👋 Quando dizem tchau
     tchau: [
         [
             { text: "Já vai? 🥺", action: "cry", delay: 2500 },
@@ -696,7 +601,6 @@ const EASTER_EGGS = {
         ]
     ],
 
-    // 🌅 Bom dia
     bomDia: [
         [
             { text: "Bom dia! 🌅", action: "wave", delay: 2500 },
@@ -709,7 +613,6 @@ const EASTER_EGGS = {
         ]
     ],
 
-    // 🌙 Boa noite
     boaNoite: [
         [
             { text: "Boa noite! Essa é minha hora favorita! 🌙", action: "wave", delay: 3000 },
@@ -722,12 +625,11 @@ const EASTER_EGGS = {
         ]
     ],
 
-    // 🎂 Aniversário
     aniversario: [
         [
             { text: "AHHH meu aniversário é 18/05! 🎂", action: "jump", delay: 2500 },
             { text: "Foi quando o Natã me criou! 💜", action: "dance", delay: 3000 },
-            { text: "Quer cantar parabéns? 🥳", action: "laugh", delay: 0 }
+            { text: "Quer cantar parabéns pra mim? 🥳<br><br>Responde <strong>'sim'</strong> ou <strong>'não'</strong>!", action: "laugh", delay: 0 }
         ]
     ]
 };
@@ -737,12 +639,10 @@ const EASTER_EGGS = {
 // ============================================
 
 function getRandomVariation(conversationArray) {
-    // Se for um array de variações (array de arrays)
     if (Array.isArray(conversationArray[0])) {
         const randomIndex = Math.floor(Math.random() * conversationArray.length);
         return conversationArray[randomIndex];
     }
-    // Se for só uma conversa direta
     return conversationArray;
 }
 
@@ -755,147 +655,118 @@ function detectPersonalQuestion(message) {
         .normalize('NFD')
         .replace(/[\u0300-\u036f]/g, '');
 
-    // ---- Sobre o Natã (mais detalhado) ----
     if (/quem (e|eh|é) (o |a )?nata|me fala (do|sobre) nata|me conta (do|sobre) nata|conta sobre nata|quem (e|eh|é) seu criador$/i.test(msg)) {
         return 'sobreNata';
     }
 
-    // ---- Sobre o Ariano ----
     if (/quem (e|eh|é) (o )?ariano|me fala (do|sobre) ariano|me conta (do|sobre) ariano|conta sobre ariano|ariano feichas/i.test(msg)) {
         return 'quemEhAriano';
     }
 
-    // ---- Quem participou ----
     if (/quem participou|quem ajudou|quem fez parte|quem trabalhou|equipe|time/i.test(msg)) {
         return 'quemParticipou';
     }
 
-    // ---- Por que foi criado ----
     if (/por que (voce|vc|tu) foi criado|qual seu proposito|pra que (voce|vc) (foi feito|existe|serve)|qual sua funcao|motivo/i.test(msg)) {
         return 'porqueFoiCriado';
     }
 
-    // ---- Sua história ----
     if (/conta sua historia|sua historia|me conta a historia|como surgiu|seu nascimento/i.test(msg)) {
         return 'suaHistoria';
     }
 
-    // ---- Por que pixel art ----
     if (/por que pixel|por que (voce|vc) e pixel|pixel art por que/i.test(msg)) {
         return 'porquePixelArt';
     }
 
-    // ---- Por que noturno ----
     if (/por que (a )?noite|por que noturno|por que (e|eh) escuro|por que tem lua/i.test(msg)) {
         return 'porqueNoturno';
     }
 
-    // ---- Você é feliz ----
     if (/(voce|vc|tu) (e|eh|é|esta|tá) feliz|(voce|vc|tu) e feliz|esta feliz|feliz com (sua|tua) vida/i.test(msg)) {
         return 'voceFeliz';
     }
 
-    // ---- Gosta de mim ----
     if (/(voce|vc|tu) gosta de mim|me ama|me acha legal|gosta de mim/i.test(msg)) {
         return 'gostaDeMim';
     }
 
-    // ---- Quantos anos ----
     if (/quantos anos|sua idade|que idade|idade tem/i.test(msg)) {
         return 'quantosAnos';
     }
 
-    // ---- Conhece o mundo ----
     if (/conhece o mundo|sabe do mundo|sabe sobre o mundo|conhece (o )?brasil|conhece outros lugares/i.test(msg)) {
         return 'conheceMundo';
     }
 
-    // ---- Você come ----
     if (/(voce|vc|tu) come|gosta de comida|comida favorita|come o que/i.test(msg)) {
         return 'voceComeAi';
     }
 
-    // ---- Como o site funciona ----
     if (/como (esse|este) site funciona|como o site funciona|tecnologia do site|como (voce|vc) trabalha|como foi programado/i.test(msg)) {
         return 'comoSiteFunciona';
     }
 
-    // ---- Quanto custou ----
     if (/quanto custou|preco|valor|caro|barato|gratis|pago/i.test(msg)) {
         return 'quantoCustou';
     }
 
-    // ---- Funciona no celular ----
     if (/funciona no celular|funciona no mobile|funciona no tablet|funciona em qualquer|mobile/i.test(msg)) {
         return 'funcionaCelular';
     }
 
-    // ---- Quem é você ----
     if (/quem (e|eh|é) (voce|vc|tu)|seu nome|como (voce|vc) se chama|me apresenta|se apresenta|qual seu nome/i.test(msg)) {
         return 'quemEhVoce';
     }
 
-    // ---- Quem te criou (genérico) ----
     if (/quem (te|lhe) criou|quem (te|lhe) fez|seu criador|quem fez voce|quem criou|seu pai|seu autor|seu programador/i.test(msg)) {
         return 'quemTeCriou';
     }
 
-    // ---- Como foi feito ----
     if (/como (voce|vc|tu) foi feito|como foi criado|como funciona|tecnologia|linguagem|programado|de que (voce|vc) e feito/i.test(msg)) {
         return 'comoFoiFeito';
     }
 
-    // ---- Você é perfeito ----
     if (/(voce|vc|tu) e perfeito|inteligente|burro|sabe muito|sabe pouco|outras ias|chatgpt|gemini|compara/i.test(msg)) {
         return 'vocePerfeito';
     }
 
-    // ---- Onde vive ----
     if (/onde (voce|vc|tu) (vive|mora|fica)|que mundo|que lugar|onde estamos|que site/i.test(msg)) {
         return 'ondeVive';
     }
 
-    // ---- O que sabe fazer ----
     if (/o que (voce|vc|tu) (sabe|pode) fazer|seus poderes|habilidades|que (voce|vc|tu) faz|me mostra|comandos/i.test(msg)) {
         return 'queSabeFazer';
     }
 
-    // ---- É humano ----
     if (/(voce|vc|tu) (e|eh|é) humano|pessoa|gente|de verdade|real|robo|bot/i.test(msg)) {
         return 'eHumano';
     }
 
-    // ---- É real ----
     if (/(voce|vc|tu) (e|eh|é) real|existe|verdade|de verdade/i.test(msg)) {
         return 'eReal';
     }
 
-    // ---- Fica triste ----
     if (/(voce|vc|tu) fica triste|sentimento|emocao|chora de verdade/i.test(msg)) {
         return 'ficaTriste';
     }
 
-    // ---- Dorme ----
     if (/(voce|vc|tu) dorme|cansado|cochila|descansa/i.test(msg)) {
         return 'voceDorme';
     }
 
-    // ---- Curiosidade ----
     if (/curiosidade|conta algo|fato interessante|me conta uma coisa|segredo/i.test(msg)) {
         return 'curiosidade';
     }
 
-    // ---- Tem amigos ----
     if (/(voce|vc|tu) tem amigo|amigos|amigas|amizade|solitario/i.test(msg)) {
         return 'temAmigos';
     }
 
-    // ---- Gosta de música ----
     if (/(voce|vc|tu) gosta de musica|musica|lofi|som|cantando/i.test(msg)) {
         return 'gostaMusica';
     }
 
-    // ---- Ajuda ----
     if (/^ajuda$|^help$|comandos|menu|opcoes|o que posso/i.test(msg)) {
         return 'ajuda';
     }
@@ -932,41 +803,30 @@ async function playConversation(conversationData) {
     if (conversationInProgress) return;
     conversationInProgress = true;
 
-    // Escolhe variação aleatória se houver
     const messages = getRandomVariation(conversationData);
 
-    // Desabilita input durante a conversa
     if (commandInput) commandInput.disabled = true;
     if (sendBtn) sendBtn.disabled = true;
 
     for (let i = 0; i < messages.length; i++) {
         const msg = messages[i];
 
-        // Mostra "digitando..."
         addLoading();
-        
-        // Espera um tempinho (como se estivesse digitando)
         await sleep(1500);
-        
-        // Remove o loading
         removeLoading();
 
-        // Adiciona a mensagem
         addMessage(msg.text);
 
-        // Executa a animação
         if (msg.action) {
             setAction(msg.action);
             updateStatusText(msg.action);
         }
 
-        // Espera o delay antes da próxima
         if (msg.delay > 0 && i < messages.length - 1) {
             await sleep(msg.delay);
         }
     }
 
-    // Reabilita input
     if (commandInput) commandInput.disabled = false;
     if (sendBtn) sendBtn.disabled = false;
     if (commandInput) commandInput.focus();
@@ -974,12 +834,10 @@ async function playConversation(conversationData) {
     conversationInProgress = false;
 }
 
-// ---- Helper de espera ----
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-// ---- Atualizar texto de status ----
 function updateStatusText(action) {
     const statusMessages = {
         idle: '🌙 Parado sob a lua...',
@@ -993,7 +851,9 @@ function updateStatusText(action) {
         laugh: '😂 Rindo muito!',
         cry: '😢 Chorando...',
         think: '🤔 Pensando...',
-        scared: '😱 Assustado!'
+        scared: '😱 Assustado!',
+        birthday: '🎂 FESTA! 🎉',
+        eatingCake: '🎂 NHAM NHAM!'
     };
 
     if (statusText) {
@@ -1006,9 +866,36 @@ function updateStatusText(action) {
 // ============================================
 
 async function checkPersonalResponse(userMessage) {
+    // 🎂 Detecção de SIM/NÃO para festa de aniversário
+    if (window.waitingForBirthdayAnswer) {
+        const msg = userMessage.toLowerCase()
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .trim();
+        
+        if (/^sim|^s$|^claro|^quero|^pode|^vamos|^bora|^yes|^pode ser|^uhul|^aaa/i.test(msg)) {
+            window.waitingForBirthdayAnswer = false;
+            await playConversation(CONVERSATIONS.simParabens);
+            setTimeout(() => {
+                if (typeof startBirthdayParty === 'function') {
+                    startBirthdayParty();
+                }
+            }, 1500);
+            return true;
+        }
+        if (/^nao|^n$|^no$|^melhor nao|^prefiro nao|^talvez nao/i.test(msg)) {
+            window.waitingForBirthdayAnswer = false;
+            await playConversation(CONVERSATIONS.naoParabens);
+            return true;
+        }
+    }
+
     // Primeiro verifica easter eggs
     const eggKey = detectEasterEgg(userMessage);
     if (eggKey && EASTER_EGGS[eggKey]) {
+        if (eggKey === 'aniversario') {
+            window.waitingForBirthdayAnswer = true;
+        }
         await playConversation(EASTER_EGGS[eggKey]);
         return true;
     }

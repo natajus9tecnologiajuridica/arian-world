@@ -1,5 +1,5 @@
 // ============================================
-// 🤖 PERSONAGEM PIXEL ART ANIMADO - V5
+// 🤖 PERSONAGEM PIXEL ART ANIMADO - V6 (com aniversário!)
 // ============================================
 
 const charCanvas = document.getElementById('characterCanvas');
@@ -8,28 +8,25 @@ const ctx = charCanvas.getContext('2d');
 // Escala do pixel - ajusta automaticamente pro tamanho da tela
 function getPixelSize() {
     const width = window.innerWidth;
-    if (width < 380) return 7;      // celular pequeno
-    if (width < 600) return 8;      // celular
-    if (width < 900) return 7;      // tablet
-    return 10;                      // desktop
+    if (width < 380) return 7;
+    if (width < 600) return 8;
+    if (width < 900) return 7;
+    return 10;
 }
 
 let PIXEL = getPixelSize();
 let CENTER_X = charCanvas.width / 2;
 let CENTER_Y = charCanvas.height / 2 + 40;
 
-// Atualizar quando redimensionar
 window.addEventListener('resize', () => {
     PIXEL = getPixelSize();
     CENTER_X = charCanvas.width / 2;
     CENTER_Y = charCanvas.height / 2 + 40;
 });
 
-// Estado do personagem
 let currentAction = 'idle';
 let animFrame = 0;
 
-// Cores do personagem (tema noturno)
 const COLORS = {
     skin: '#f0c89a',
     hair: '#4a3a6a',
@@ -44,7 +41,6 @@ const COLORS = {
     mouth: '#c0756b',
 };
 
-// ---- Desenhar um pixel ----
 function drawPixel(x, y, color, size = PIXEL) {
     ctx.fillStyle = color;
     ctx.fillRect(
@@ -55,38 +51,21 @@ function drawPixel(x, y, color, size = PIXEL) {
     );
 }
 
-// ---- SOMBRA INTELIGENTE E PROPORCIONAL ----
 function drawShadowAtFeet(feetYPixel, widthScale = 1, opacity = 0.45) {
     ctx.save();
     
     const shadowY = CENTER_Y + (feetYPixel + 1) * PIXEL - (PIXEL * 20);
-    
-    // Sombra proporcional ao tamanho do personagem!
     const shadowWidth = (PIXEL * 10) * widthScale;
     const shadowHeight = PIXEL * 1.5;
     
-    // Camada externa (mais difusa)
     ctx.beginPath();
     ctx.fillStyle = `rgba(0, 0, 0, ${opacity * 0.4})`;
-    ctx.ellipse(
-        CENTER_X,
-        shadowY,
-        shadowWidth * 1.3,
-        shadowHeight * 1.5,
-        0, 0, Math.PI * 2
-    );
+    ctx.ellipse(CENTER_X, shadowY, shadowWidth * 1.3, shadowHeight * 1.5, 0, 0, Math.PI * 2);
     ctx.fill();
     
-    // Camada principal (mais escura)
     ctx.beginPath();
     ctx.fillStyle = `rgba(0, 0, 0, ${opacity})`;
-    ctx.ellipse(
-        CENTER_X,
-        shadowY,
-        shadowWidth,
-        shadowHeight,
-        0, 0, Math.PI * 2
-    );
+    ctx.ellipse(CENTER_X, shadowY, shadowWidth, shadowHeight, 0, 0, Math.PI * 2);
     ctx.fill();
     
     ctx.restore();
@@ -956,6 +935,241 @@ const animations = {
             for (let x = 10; x <= 12; x++) {
                 drawPixel(x, 17 + bounce - legOffset, COLORS.pants);
                 drawPixel(x, 18 + bounce - legOffset, COLORS.shoes);
+            }
+        }
+    },
+
+    // ---- 🎂 ANIVERSÁRIO! ----
+    birthday: {
+        frames: 6,
+        speed: 200,
+        draw(frame) {
+            const jumpHeight = [0, -3, -5, -6, -4, -1][frame];
+            const armClap = frame % 2 === 0;
+            const sway = frame % 2 === 0 ? -1 : 1;
+
+            const heightFactor = Math.abs(jumpHeight) / 8;
+            drawShadowAtFeet(18, 1 - heightFactor * 0.3, 0.45 - heightFactor * 0.15);
+
+            const oY = jumpHeight;
+
+            // 🎉 CHAPÉU DE FESTA
+            for (let x = 4; x <= 11; x++) drawPixel(x + sway, -1 + oY, '#ec4899');
+            for (let x = 5; x <= 10; x++) drawPixel(x + sway, -2 + oY, '#a855f7');
+            for (let x = 6; x <= 9; x++) drawPixel(x + sway, -3 + oY, '#3b82f6');
+            for (let x = 6; x <= 9; x++) drawPixel(x + sway, -4 + oY, '#10b981');
+            for (let x = 7; x <= 8; x++) drawPixel(x + sway, -5 + oY, '#f59e0b');
+            for (let x = 7; x <= 8; x++) drawPixel(x + sway, -6 + oY, '#ef4444');
+            
+            drawPixel(7 + sway, -7 + oY, '#fbbf24');
+            drawPixel(8 + sway, -7 + oY, '#fbbf24');
+            drawPixel(7 + sway, -8 + oY, '#fde047');
+            drawPixel(8 + sway, -8 + oY, '#fde047');
+
+            // Cabelo
+            for (let x = 2; x <= 13; x++) drawPixel(x + sway, 0 + oY, COLORS.hair);
+            for (let x = 1; x <= 14; x++) drawPixel(x + sway, 1 + oY, COLORS.hair);
+            for (let x = 1; x <= 14; x++) drawPixel(x + sway, 2 + oY, COLORS.hair);
+
+            // Cabeça
+            for (let x = 2; x <= 13; x++) {
+                for (let y = 3; y <= 8; y++) {
+                    drawPixel(x + sway, y + oY, COLORS.skin);
+                }
+            }
+
+            // Olhos super felizes (^_^)
+            drawPixel(3 + sway, 5 + oY, COLORS.pupils);
+            drawPixel(4 + sway, 4 + oY, COLORS.pupils);
+            drawPixel(5 + sway, 4 + oY, COLORS.pupils);
+            drawPixel(6 + sway, 5 + oY, COLORS.pupils);
+            drawPixel(9 + sway, 5 + oY, COLORS.pupils);
+            drawPixel(10 + sway, 4 + oY, COLORS.pupils);
+            drawPixel(11 + sway, 4 + oY, COLORS.pupils);
+            drawPixel(12 + sway, 5 + oY, COLORS.pupils);
+
+            // Boca super sorridente
+            for (let x = 5; x <= 10; x++) drawPixel(x + sway, 7 + oY, COLORS.outline);
+            for (let x = 6; x <= 9; x++) drawPixel(x + sway, 8 + oY, COLORS.mouth);
+            drawPixel(5 + sway, 6 + oY, COLORS.mouth);
+            drawPixel(10 + sway, 6 + oY, COLORS.mouth);
+
+            // Blush FORTE
+            drawPixel(1 + sway, 6 + oY, '#fb7185');
+            drawPixel(2 + sway, 6 + oY, '#f0a0a0');
+            drawPixel(3 + sway, 6 + oY, COLORS.blush);
+            drawPixel(12 + sway, 6 + oY, COLORS.blush);
+            drawPixel(13 + sway, 6 + oY, '#f0a0a0');
+            drawPixel(14 + sway, 6 + oY, '#fb7185');
+
+            // Corpo
+            for (let x = 4; x <= 11; x++) {
+                for (let y = 9; y <= 14; y++) {
+                    drawPixel(x, y + oY, y < 12 ? COLORS.shirt : COLORS.shirtLight);
+                }
+            }
+
+            // 👏 BRAÇOS BATENDO PALMAS!
+            if (armClap) {
+                for (let y = 9; y <= 11; y++) {
+                    drawPixel(6, y + oY, COLORS.shirt);
+                    drawPixel(9, y + oY, COLORS.shirt);
+                }
+                drawPixel(7, 12 + oY, COLORS.skin);
+                drawPixel(8, 12 + oY, COLORS.skin);
+                drawPixel(7, 13 + oY, '#fde047');
+                drawPixel(8, 13 + oY, '#fde047');
+            } else {
+                for (let y = 9; y <= 11; y++) {
+                    drawPixel(2, y + oY, COLORS.shirt);
+                    drawPixel(13, y + oY, COLORS.shirt);
+                }
+                drawPixel(1, 12 + oY, COLORS.skin);
+                drawPixel(2, 12 + oY, COLORS.skin);
+                drawPixel(13, 12 + oY, COLORS.skin);
+                drawPixel(14, 12 + oY, COLORS.skin);
+            }
+
+            // Calça
+            for (let x = 4; x <= 11; x++) {
+                drawPixel(x, 15 + oY, COLORS.pants);
+                drawPixel(x, 16 + oY, COLORS.pants);
+            }
+
+            // Pernas pulando
+            const legKick = frame % 2 === 0;
+            for (let x = 4; x <= 6; x++) {
+                drawPixel(x, 17 + oY + (legKick ? -1 : 0), COLORS.pants);
+                drawPixel(x, 18 + oY + (legKick ? -1 : 0), COLORS.shoes);
+            }
+            for (let x = 9; x <= 11; x++) {
+                drawPixel(x, 17 + oY + (legKick ? 0 : -1), COLORS.pants);
+                drawPixel(x, 18 + oY + (legKick ? 0 : -1), COLORS.shoes);
+            }
+        }
+    },
+
+    // ---- 🎂 COMENDO BOLO ----
+    eatingCake: {
+        frames: 4,
+        speed: 400,
+        draw(frame) {
+            const isEating = frame >= 2;
+            const breathe = frame % 2 === 0 ? 0 : -1;
+
+            drawShadowAtFeet(18 + breathe, 1.1, 0.45);
+
+            // Cabelo
+            for (let x = 2; x <= 13; x++) drawPixel(x, 0 + breathe, COLORS.hair);
+            for (let x = 1; x <= 14; x++) drawPixel(x, 1 + breathe, COLORS.hair);
+            for (let x = 1; x <= 14; x++) drawPixel(x, 2 + breathe, COLORS.hair);
+
+            // Cabeça
+            for (let x = 2; x <= 13; x++) {
+                for (let y = 3; y <= 8; y++) {
+                    drawPixel(x, y + breathe, COLORS.skin);
+                }
+            }
+
+            // Olhos felizes
+            drawPixel(4, 5 + breathe, COLORS.eyes);
+            drawPixel(5, 5 + breathe, COLORS.eyes);
+            drawPixel(10, 5 + breathe, COLORS.eyes);
+            drawPixel(11, 5 + breathe, COLORS.eyes);
+            drawPixel(5, 5 + breathe, COLORS.pupils);
+            drawPixel(10, 5 + breathe, COLORS.pupils);
+
+            // Blush
+            drawPixel(3, 6 + breathe, COLORS.blush);
+            drawPixel(12, 6 + breathe, COLORS.blush);
+
+            // Boca
+            if (isEating) {
+                drawPixel(6, 7 + breathe, COLORS.outline);
+                drawPixel(7, 7 + breathe, COLORS.outline);
+                drawPixel(8, 7 + breathe, COLORS.outline);
+                drawPixel(9, 7 + breathe, COLORS.outline);
+                drawPixel(7, 8 + breathe, COLORS.mouth);
+                drawPixel(8, 8 + breathe, COLORS.mouth);
+            } else {
+                drawPixel(6, 7 + breathe, COLORS.mouth);
+                drawPixel(7, 7 + breathe, COLORS.mouth);
+                drawPixel(8, 7 + breathe, COLORS.mouth);
+                drawPixel(9, 7 + breathe, COLORS.mouth);
+            }
+
+            // 🎂 BOLO!
+            const cakeY = isEating ? 7 : 11;
+            const cakeX = isEating ? 12 : 14;
+            
+            for (let x = cakeX; x <= cakeX + 4; x++) {
+                drawPixel(x, cakeY + breathe, '#8b4513');
+                drawPixel(x, cakeY + 1 + breathe, '#a0522d');
+            }
+            
+            for (let x = cakeX; x <= cakeX + 4; x++) {
+                drawPixel(x, cakeY - 1 + breathe, '#fbbf24');
+            }
+            for (let x = cakeX; x <= cakeX + 4; x++) {
+                drawPixel(x, cakeY - 2 + breathe, '#ec4899');
+            }
+            
+            // Vela
+            drawPixel(cakeX + 2, cakeY - 3 + breathe, '#fef3c7');
+            drawPixel(cakeX + 2, cakeY - 4 + breathe, '#fef3c7');
+            
+            // Chama
+            drawPixel(cakeX + 2, cakeY - 5 + breathe, '#fbbf24');
+            drawPixel(cakeX + 2, cakeY - 6 + breathe, '#ef4444');
+
+            // Pedaço mordido
+            if (isEating) {
+                drawPixel(cakeX, cakeY + breathe, COLORS.skin);
+                drawPixel(cakeX, cakeY - 1 + breathe, COLORS.skin);
+                drawPixel(cakeX, cakeY - 2 + breathe, COLORS.skin);
+            }
+
+            // Corpo
+            for (let x = 4; x <= 11; x++) {
+                for (let y = 9; y <= 14; y++) {
+                    drawPixel(x, y + breathe, y < 12 ? COLORS.shirt : COLORS.shirtLight);
+                }
+            }
+
+            // Braços segurando o bolo
+            if (isEating) {
+                for (let y = 7; y <= 9; y++) {
+                    drawPixel(11, y + breathe, COLORS.shirt);
+                }
+                drawPixel(11, 6 + breathe, COLORS.skin);
+            } else {
+                for (let y = 9; y <= 11; y++) {
+                    drawPixel(12, y + breathe, COLORS.shirt);
+                    drawPixel(13, y + breathe, COLORS.shirt);
+                }
+                drawPixel(13, 12 + breathe, COLORS.skin);
+            }
+
+            // Outro braço normal
+            for (let y = 9; y <= 13; y++) {
+                drawPixel(3, y + breathe, COLORS.shirt);
+            }
+            drawPixel(3, 14 + breathe, COLORS.skin);
+
+            // Calça
+            for (let x = 4; x <= 11; x++) {
+                drawPixel(x, 15 + breathe, COLORS.pants);
+                drawPixel(x, 16 + breathe, COLORS.pants);
+            }
+
+            // Pernas
+            for (let x = 4; x <= 6; x++) {
+                drawPixel(x, 17 + breathe, COLORS.pants);
+                drawPixel(x, 18 + breathe, COLORS.shoes);
+            }
+            for (let x = 9; x <= 11; x++) {
+                drawPixel(x, 17 + breathe, COLORS.pants);
+                drawPixel(x, 18 + breathe, COLORS.shoes);
             }
         }
     }
