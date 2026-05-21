@@ -805,8 +805,17 @@ async function playConversation(conversationData) {
 
     const messages = getRandomVariation(conversationData);
 
-    if (commandInput) commandInput.disabled = true;
-    if (sendBtn) sendBtn.disabled = true;
+    // 🔒 BLOQUEIA o input durante TODA a conversa
+    if (commandInput) {
+        commandInput.disabled = true;
+        commandInput.placeholder = '🌙 Arian está falando... aguarde';
+        commandInput.value = ''; // Limpa qualquer coisa que tava digitando
+    }
+    if (sendBtn) {
+        sendBtn.disabled = true;
+        sendBtn.style.opacity = '0.5';
+        sendBtn.style.cursor = 'not-allowed';
+    }
 
     for (let i = 0; i < messages.length; i++) {
         const msg = messages[i];
@@ -827,8 +836,16 @@ async function playConversation(conversationData) {
         }
     }
 
-    if (commandInput) commandInput.disabled = false;
-    if (sendBtn) sendBtn.disabled = false;
+    // 🔓 LIBERA o input quando TUDO acabar
+    if (commandInput) {
+        commandInput.disabled = false;
+        commandInput.placeholder = 'Ex: Quero que ele dance...';
+    }
+    if (sendBtn) {
+        sendBtn.disabled = false;
+        sendBtn.style.opacity = '';
+        sendBtn.style.cursor = '';
+    }
     if (commandInput) commandInput.focus();
 
     conversationInProgress = false;

@@ -78,12 +78,23 @@ async function sendCommand() {
     addMessage(text, true);
     commandInput.value = '';
 
+    // 🧠 PRIMEIRO: Verifica se tá esperando o nome do visitante
+    if (typeof checkNameResponse === 'function') {
+        const wasName = await checkNameResponse(text);
+        if (wasName) return;
+    }
+
     // 📊 Incrementa contador de comandos
     if (typeof incrementCommandCount === 'function') {
         incrementCommandCount();
     }
 
-    // 🌙 PRIMEIRO: Verifica se é uma pergunta pessoal sobre o Arian
+    // 🧠 Reset do timer de ações idle (Arian fica "ocupado")
+    if (typeof resetIdleTimer === 'function') {
+        resetIdleTimer();
+    }
+
+    // 🌙 Verifica se é uma pergunta pessoal sobre o Arian
     if (typeof checkPersonalResponse === 'function') {
         const wasPersonal = await checkPersonalResponse(text);
         if (wasPersonal) {
@@ -109,6 +120,11 @@ async function sendCommand() {
     removeLoading();
 
     setAction(result.action);
+
+    // 🧠 Registra a ação na memória do Arian
+    if (typeof recordAction === 'function') {
+        recordAction(result.action);
+    }
 
     const statusMessages = {
         idle: '🌙 Parado sob a lua...',

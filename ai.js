@@ -1,5 +1,5 @@
 // ============================================
-// 🧠 INTEGRAÇÃO COM IA - V2
+// 🧠 INTEGRAÇÃO COM IA - V3 (com memória!)
 // ============================================
 
 const OPENAI_API_KEY = 'SUA_CHAVE_API_AQUI';
@@ -81,6 +81,11 @@ function fallbackResponse(message) {
     const msg = message.toLowerCase()
         .normalize('NFD')
         .replace(/[\u0300-\u036f]/g, '');
+
+    // 🧠 Usa o nome do visitante se conhecer
+    const userName = typeof getVisitorName === 'function' ? getVisitorName() : null;
+    const hasName = userName && userName !== 'amigo(a)';
+    const namePrefix = hasName ? `${userName}, ` : '';
 
     const keywords = {
         walk: [
@@ -219,63 +224,112 @@ function fallbackResponse(message) {
         ]
     };
 
+    // 🧠 Mensagens com personalização pelo nome
     const messages = {
-        walk: [
+        walk: hasName ? [
+            `🚶 Bora dar uma voltinha pela noite, ${userName}!`,
+            `🚶 Andando tranquilo sob o luar, ${userName}...`,
+            '🚶 Caminhada noturna é tudo de bom!'
+        ] : [
             '🚶 Bora dar uma voltinha pela noite!',
             '🚶 Andando tranquilo sob o luar...',
             '🚶 Caminhada noturna é tudo de bom!'
         ],
-        run: [
+        run: hasName ? [
+            `🏃 Olha eu indo, ${userName}!`,
+            '🏃 Vrum vrum! Correndo sob o luar!',
+            '🏃 Mais rápido que a velocidade da luz... quase!'
+        ] : [
             '🏃 Correndo sob o luar! Que liberdade!',
             '🏃 Vrum vrum! Olha eu indo!',
             '🏃 Mais rápido que a velocidade da luz... quase!'
         ],
-        jump: [
+        jump: hasName ? [
+            `🦘 Olha eu pulando, ${userName}!`,
+            '🦘 Boing boing boing!',
+            '🦘 Tô voando! Olha eu lá em cima!'
+        ] : [
             '🦘 Pulando até a lua! (ou tentando...)',
             '🦘 Boing boing boing!',
             '🦘 Tô voando! Olha eu lá em cima!'
         ],
-        sit: [
+        sit: hasName ? [
+            `🪑 Senta aqui comigo, ${userName} ✨`,
+            '🪑 Ahhh, que delícia descansar...',
+            '🪑 Vou ficar aqui contemplando as estrelas'
+        ] : [
             '🪑 Sentando pra apreciar a lua cheia ✨',
             '🪑 Ahhh, que delícia descansar...',
             '🪑 Vou ficar aqui contemplando as estrelas'
         ],
-        dance: [
+        dance: hasName ? [
+            `💃 Dança comigo, ${userName}! Vamo!`,
+            '💃 É hora da festa! Vamo que vamo!',
+            '💃 Olha esse gingado! Sou ou não sou?'
+        ] : [
             '💃 Dançando sob as estrelas! Que vibe!',
             '💃 É hora da festa! Vamo que vamo!',
             '💃 Olha esse gingado! Sou ou não sou?'
         ],
-        wave: [
+        wave: hasName ? [
+            `👋 Oi oi, ${userName}! Tudo bem?`,
+            `👋 ${userName}, que bom te ver! 💜`,
+            '👋 Acenando com muito carinho!'
+        ] : [
             '👋 Oi oi! Tudo bem com você?',
             '👋 Acenando com muito carinho!',
             '👋 Olá, humano! Que bom te ver!'
         ],
-        sleep: [
+        sleep: hasName ? [
+            `😴 Boa noite, ${userName}... zzz...`,
+            '😴 Tô com tanto sono... zzz',
+            '😴 Hora de descansar... boa noite!'
+        ] : [
             '😴 Boa noite... zzz... sonhando com estrelas...',
             '😴 Tô com tanto sono... zzz',
             '😴 Hora de descansar... boa noite!'
         ],
-        laugh: [
+        laugh: hasName ? [
+            `😂 HAHAHAHA ${userName} você é demais!`,
+            '😂 Kkkkkk não aguento!',
+            '😂 Tô rindo demais, segura ai!'
+        ] : [
             '😂 HAHAHAHA que engraçado!',
             '😂 Kkkkkk não aguento!',
             '😂 Tô rindo demais, segura ai!'
         ],
-        cry: [
+        cry: hasName ? [
+            `😢 ${userName}... por que isso? 🥺`,
+            '😢 Snif snif... preciso de um abraço',
+            '😢 Tô tão tristinho... :('
+        ] : [
             '😢 Buááá... que tristeza...',
             '😢 Snif snif... preciso de um abraço',
             '😢 Tô tão tristinho... :('
         ],
-        think: [
+        think: hasName ? [
+            `🤔 Hmmm... boa pergunta, ${userName}...`,
+            '🤔 Interessante... muito interessante...',
+            '🤔 Tô refletindo sobre a vida...'
+        ] : [
             '🤔 Hmmm... deixa eu pensar...',
             '🤔 Interessante... muito interessante...',
             '🤔 Tô refletindo sobre a vida...'
         ],
-        scared: [
+        scared: hasName ? [
+            `😱 AAAAH ${userName}! Que susto!`,
+            '😱 Socorro! Tô com medo!',
+            '😱 Não me assusta assim, gente!'
+        ] : [
             '😱 AAAAH! Que susto!',
             '😱 Socorro! Tô com medo!',
             '😱 Não me assusta assim, gente!'
         ],
-        idle: [
+        idle: hasName ? [
+            `🌙 Tô aqui com você, ${userName}...`,
+            '🌙 Tô só aqui, na minha...',
+            '🌙 Apreciando o silêncio da noite'
+        ] : [
             '🌙 De boa, curtindo a noite...',
             '🌙 Tô só aqui, na minha...',
             '🌙 Apreciando o silêncio da noite'
@@ -292,7 +346,12 @@ function fallbackResponse(message) {
         }
     }
 
-    const confusedMessages = [
+    // 🧠 Mensagens confusas personalizadas
+    const confusedMessages = hasName ? [
+        `🤔 Hmmm ${userName}, não entendi... tenta: pular, dançar, rir...`,
+        `😅 Não captei essa, ${userName}! Que tal me pedir pra dançar?`,
+        `🌙 Não sei fazer isso ainda, ${userName}... mas posso pular, correr, dormir...`
+    ] : [
         '🤔 Hmmm, não entendi... tenta: pular, dançar, rir, chorar, pensar...',
         '😅 Não captei essa! Que tal me pedir pra dançar ou pular?',
         '🌙 Não sei fazer isso ainda... mas posso pular, correr, dormir...'
